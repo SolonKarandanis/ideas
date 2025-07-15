@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
@@ -14,4 +15,7 @@ Route::get('/ideas/{id}/edit', [IdeaController::class, 'edit'])->name('ideas.edi
 Route::put('/ideas/{id}', [IdeaController::class, 'update'])->name('ideas.update');
 
 Route::post('/ideas/{id}/comments', [CommentController::class, 'store'])->name('ideas.comments.create');
+
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
