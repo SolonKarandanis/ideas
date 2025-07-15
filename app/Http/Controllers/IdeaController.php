@@ -15,7 +15,7 @@ class IdeaController extends Controller
 
     public function store(Request $request)
     {
-        request()->validate([
+        $request->validate([
             'content' => 'required:string',
         ]);
         Idea::create([
@@ -42,7 +42,7 @@ class IdeaController extends Controller
     }
 
     public function update(Request $request, int $id){
-        request()->validate([
+        $request->validate([
             'content' => 'required:string',
         ]);
         $idea=Idea::whereId($id)->first();
