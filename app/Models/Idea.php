@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+/**
+ *
+ *
+ * @property int $id
+ * @property string $content
+ * @property int $likes
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereLikes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+class Idea extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'content',
+        'likes',
+    ];
+
+    public function comments():HasMany{
+        return $this->hasMany(Comment::class);
+    }
+}
