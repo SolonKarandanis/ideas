@@ -27,7 +27,15 @@ class IdeaController extends Controller
     }
 
     public function show(int $id){
-        $idea=Idea::whereId($id)->with(['comments'])->first();
+        $idea= Idea::select([
+            'ideas.*',
+            'users.id as user_id',
+            'users.name as user_name'
+        ])
+            ->join('users', 'users.id', '=', 'ideas.user_id')
+            ->where('ideas.id', $id)
+            ->with(['comments','comments.user'])
+            ->first();
         return view('ideas.show',[
             'idea'=>$idea,
             'editing'=>false
