@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $content
@@ -35,6 +35,7 @@ class Idea extends Model
     protected $fillable = [
         'content',
         'likes',
+        'user_id',
     ];
 
     public function comments():HasMany{

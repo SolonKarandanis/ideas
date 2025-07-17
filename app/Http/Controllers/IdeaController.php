@@ -20,6 +20,7 @@ class IdeaController extends Controller
         ]);
         Idea::create([
             'content' => $request->get('content'),
+            'user_id' => auth()->id(),
         ]);
         return redirect()->route('dashboard')
             ->with('success', 'Idea added successfully!');

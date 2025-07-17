@@ -19,6 +19,7 @@ class CommentController extends Controller
         Comment::create([
             'idea_id' => $idea->id,
             'content' => $request->get('content'),
+            'user_id' => auth()->id(),
         ]);
         return redirect()->route('dashboard')
             ->with('success', 'Comment added successfully!');
