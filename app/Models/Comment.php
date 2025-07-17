@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $idea_id
@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereIdeaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereUpdatedAt($value)
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereUserId($value)
  * @mixin \Eloquent
  */
 class Comment extends Model

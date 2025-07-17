@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $content
@@ -22,6 +22,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereLikes($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereUpdatedAt($value)
+ * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereUserId($value)
  * @mixin \Eloquent
  */
 class Idea extends Model
