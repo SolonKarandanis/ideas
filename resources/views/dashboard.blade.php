@@ -7,7 +7,6 @@
         </div>
         <div class="col-6">
             @include('shared.success-message')
-            <h4> Share yours ideas </h4>
             @include('shared.submit-idea')
             <hr>
             @foreach($ideas as $idea)
