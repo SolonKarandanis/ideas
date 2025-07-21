@@ -11,9 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class UserService implements UserServiceInterface
 {
 
-    public function __construct(private readonly UserRepositoryInterface $userRepository)
-    {
-    }
+    public function __construct(private readonly UserRepositoryInterface $userRepository){}
     public function createUser(UserDto $userDto): Builder|User
     {
         return $this->userRepository->createUser($userDto);
@@ -22,6 +20,8 @@ class UserService implements UserServiceInterface
     public function editUser(UserDto $userDto): Builder|User
     {
         $user = $this->getUserById($userDto->getId());
+        $user->name = $userDto->getName();
+        $user->email = $userDto->getEmail();
         return $this->userRepository->editUser($user);
     }
 
