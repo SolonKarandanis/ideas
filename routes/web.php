@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -17,6 +18,8 @@ Route::group(['prefix' => 'ideas','as'=>'ideas.'], function () {
     Route::put('/{id}', [IdeaController::class, 'update'])->name('update');
 
     Route::post('/ideas/{id}/comments', [CommentController::class, 'store'])->name('comments.create');
+
+    Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
 })
     ->middleware(['auth']);
 
