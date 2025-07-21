@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
-        $user = User::withCount(['ideas','comments'])->findOrFail($id);
+        $user = $this->userService->getUserById($id);
         return view('users.show',compact('user'));
     }
 
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function edit(int $id)
     {
-        $user = User::withCount(['ideas','comments'])->findOrFail($id);
+        $user = $this->userService->getUserById($id);
         $editing=true;
         return view('users.show',compact('user','editing'));
     }
@@ -36,6 +36,8 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, int $id)
     {
         $userDto = UserDto::fromAPiFormRequest($request);
+        $userDto->setId($id);
+        $this->userService->editUser($userDto);
     }
 
     /**

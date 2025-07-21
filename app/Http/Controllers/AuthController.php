@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Dtos\UserDto;
 use App\Http\Requests\Auth\CreateUserRequest;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
 use App\Services\UserServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -19,12 +17,7 @@ class AuthController extends Controller
 
     public function store(CreateUserRequest $request){
         $userDto = UserDto::fromAPiFormRequest($request);
-        $validatedData =$request->only(['name','email','password']);
-        User::create([
-            'name'=>$validatedData['name'],
-            'email'=>$validatedData['email'],
-            'password'=>Hash::make($validatedData['password']),
-        ]);
+        $this->userService->createUser($userDto);
         return redirect()->route('dashboard')
             ->with('success', 'User registered successfully!');
     }
