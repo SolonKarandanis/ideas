@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dtos\UserDto;
 use App\Http\Requests\Auth\CreateUserRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
@@ -15,6 +16,7 @@ class AuthController extends Controller
     }
 
     public function store(CreateUserRequest $request){
+        $userDto = UserDto::fromAPiFormRequest($request);
         $validatedData =$request->only(['name','email','password']);
         User::create([
             'name'=>$validatedData['name'],

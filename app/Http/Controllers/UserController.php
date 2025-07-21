@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dtos\UserDto;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\User;
 
@@ -32,7 +33,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, int $id)
     {
-        //
+        $userDto = UserDto::fromAPiFormRequest($request);
     }
 
     /**
