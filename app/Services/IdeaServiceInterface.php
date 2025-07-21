@@ -12,7 +12,7 @@ interface IdeaServiceInterface
 
     public function findById(int $id): ?Idea;
 
-    public function searchIdeas(string $searchQuery): LengthAwarePaginator;
+    public function searchIdeas(string|null $searchQuery): LengthAwarePaginator;
     public function createIdea(IdeaDto $ideaDto):Builder|Idea;
 
     public function updateIdea(IdeaDto $ideaDto):Builder|Idea;

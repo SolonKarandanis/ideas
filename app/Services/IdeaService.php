@@ -23,7 +23,7 @@ class IdeaService implements IdeaServiceInterface
         return $idea;
     }
 
-    public function searchIdeas(string $searchQuery): LengthAwarePaginator
+    public function searchIdeas(string|null $searchQuery): LengthAwarePaginator
     {
         return $this->ideaRepository->searchIdeas($searchQuery);
     }
