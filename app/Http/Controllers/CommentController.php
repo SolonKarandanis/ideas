@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Comments\CreateCommentRequest;
 use App\Models\Comment;
 use App\Models\Idea;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
