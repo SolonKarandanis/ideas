@@ -10,6 +10,8 @@ use Illuminate\Foundation\Http\FormRequest;
 class IdeaDto
 {
     private ?int $id;
+
+    private ?int $userId;
     private string $content;
     private ?int $likes;
     private ?Carbon $created_at;
@@ -29,6 +31,7 @@ class IdeaDto
     {
         $ideaDto = new IdeaDto();
         $ideaDto->setId($model->id);
+        $ideaDto->setUserId($model->user_id);
         $ideaDto->setContent($model->content);
         $ideaDto->setLikes($model->likes);
         $ideaDto->setCreatedAt($model->created_at);
@@ -95,5 +98,15 @@ class IdeaDto
     public function setUpdatedAt(?Carbon $updated_at): void
     {
         $this->updated_at = $updated_at;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(?int $userId): void
+    {
+        $this->userId = $userId;
     }
 }
