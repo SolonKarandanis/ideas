@@ -17,7 +17,7 @@ class UserDto
     private ?Carbon $created_at;
     private ?Carbon $updated_at;
 
-    public static function fromAPiFormRequest(FormRequest $request):UserDto{
+    public static function fromFormRequest(FormRequest $request):UserDto{
         $userDto = new UserDto();
         $userDto->setName($request->input('name'));
         $userDto->setEmail($request->input('email'));

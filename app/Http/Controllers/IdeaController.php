@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Dtos\IdeaDto;
 use App\Http\Requests\Ideas\CreateIdeaRequest;
 use App\Http\Requests\Ideas\UpdateIdeaRequest;
 use App\Models\Idea;
@@ -16,6 +17,7 @@ class IdeaController extends Controller
 
     public function store(CreateIdeaRequest $request)
     {
+        $ideaDto = IdeaDto::fromFormRequest($request);
         Idea::create([
             'content' => $request->get('content'),
             'user_id' => auth()->id(),
@@ -49,6 +51,8 @@ class IdeaController extends Controller
     }
 
     public function update(UpdateIdeaRequest $request, int $id){
+        $ideaDto = IdeaDto::fromFormRequest($request);
+        $ideaDto->setId($id);
         $idea=Idea::whereId($id)->first();
         $idea->content = $request->get('content');
         $idea->save();

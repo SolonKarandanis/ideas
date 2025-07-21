@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, int $id)
     {
-        $userDto = UserDto::fromAPiFormRequest($request);
+        $userDto = UserDto::fromFormRequest($request);
         $userDto->setId($id);
         $this->userService->editUser($userDto);
     }

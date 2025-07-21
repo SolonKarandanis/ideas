@@ -16,7 +16,7 @@ class AuthController extends Controller
     }
 
     public function store(CreateUserRequest $request){
-        $userDto = UserDto::fromAPiFormRequest($request);
+        $userDto = UserDto::fromFormRequest($request);
         $this->userService->createUser($userDto);
         return redirect()->route('dashboard')
             ->with('success', 'User registered successfully!');
