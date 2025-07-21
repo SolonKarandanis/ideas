@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Comments\CreateCommentRequest;
 use App\Models\Comment;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(Request $request,int $id){
-        request()->validate([
-            'content' => 'required:string',
-        ]);
+    public function store(CreateCommentRequest $request,int $id){
         $idea=Idea::whereId($id)->first();
         if(is_null($idea)){
             abort(404);

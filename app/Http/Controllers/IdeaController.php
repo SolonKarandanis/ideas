@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\Ideas\CreateIdeaRequest;
+use App\Http\Requests\Ideas\UpdateIdeaRequest;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
@@ -13,11 +15,8 @@ class IdeaController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(CreateIdeaRequest $request)
     {
-        $request->validate([
-            'content' => 'required:string',
-        ]);
         Idea::create([
             'content' => $request->get('content'),
             'user_id' => auth()->id(),
@@ -50,10 +49,7 @@ class IdeaController extends Controller
         ]);
     }
 
-    public function update(Request $request, int $id){
-        $request->validate([
-            'content' => 'required:string',
-        ]);
+    public function update(UpdateIdeaRequest $request, int $id){
         $idea=Idea::whereId($id)->first();
         $idea->content = $request->get('content');
         $idea->save();
