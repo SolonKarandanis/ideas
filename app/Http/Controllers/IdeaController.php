@@ -6,36 +6,22 @@ namespace App\Http\Controllers;
 use App\Dtos\IdeaDto;
 use App\Http\Requests\Ideas\CreateIdeaRequest;
 use App\Http\Requests\Ideas\UpdateIdeaRequest;
-use App\Models\Idea;
+use App\Services\IdeaServiceInterface;
 
 class IdeaController extends Controller
 {
-    public function index()
-    {
-
-    }
+    public function __construct(private readonly IdeaServiceInterface $ideaService){}
 
     public function store(CreateIdeaRequest $request)
     {
         $ideaDto = IdeaDto::fromFormRequest($request);
-        Idea::create([
-            'content' => $request->get('content'),
-            'user_id' => auth()->id(),
-        ]);
+        $this->ideaService->createIdea($ideaDto);
         return redirect()->route('dashboard')
             ->with('success', 'Idea added successfully!');
     }
 
     public function show(int $id){
-        $idea= Idea::select([
-            'ideas.*',
-            'users.id as user_id',
-            'users.name as user_name'
-        ])
-            ->join('users', 'users.id', '=', 'ideas.user_id')
-            ->where('ideas.id', $id)
-            ->with(['comments','comments.user'])
-            ->first();
+        $idea= $this->ideaService->findById($id);
         return view('ideas.show',[
             'idea'=>$idea,
             'editing'=>false
@@ -43,7 +29,7 @@ class IdeaController extends Controller
     }
 
     public function edit(int $id){
-        $idea=Idea::whereId($id)->first();
+        $idea= $this->ideaService->findById($id);
         return view('ideas.show',[
             'idea'=>$idea,
             'editing'=>true
@@ -53,14 +39,12 @@ class IdeaController extends Controller
     public function update(UpdateIdeaRequest $request, int $id){
         $ideaDto = IdeaDto::fromFormRequest($request);
         $ideaDto->setId($id);
-        $idea=Idea::whereId($id)->first();
-        $idea->content = $request->get('content');
-        $idea->save();
+        $this->ideaService->updateIdea($ideaDto);
         return redirect()->route('dashboard')->with('success', 'Idea updated successfully!');
     }
 
     public function destroy(int $id){
-        Idea::find($id)->delete();
+        $this->ideaService->deleteIdea($id);
         return redirect()->route('dashboard')
             ->with('success', 'Idea deleted successfully!');
     }
