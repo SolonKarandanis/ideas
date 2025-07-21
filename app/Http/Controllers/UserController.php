@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function edit(int $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::withCount(['ideas','comments'])->findOrFail($id);
         $editing=true;
         return view('users.show',compact('user','editing'));
     }
