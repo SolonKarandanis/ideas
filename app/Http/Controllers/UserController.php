@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Dtos\UserDto;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\User;
+use App\Services\UserServiceInterface;
 
 class UserController extends Controller
 {
+    public function __construct(private readonly UserServiceInterface $userService){}
 
     /**
      * Display the specified resource.

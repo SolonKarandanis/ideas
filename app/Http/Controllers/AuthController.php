@@ -6,11 +6,13 @@ use App\Dtos\UserDto;
 use App\Http\Requests\Auth\CreateUserRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use App\Services\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function __construct(private readonly UserServiceInterface $userService){}
     public function register(){
         return view('auth.register');
     }
