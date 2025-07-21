@@ -25,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
         ]);
     }
 
-    public function getUserById(int $userId): Builder|User
+    public function getUserById(int $userId):Builder|User|null
     {
         return $this->modelQuery()
             ->withCount(['ideas','comments'])

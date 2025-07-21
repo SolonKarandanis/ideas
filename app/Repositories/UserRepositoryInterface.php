@@ -12,5 +12,5 @@ interface UserRepositoryInterface
     public function  createUser(UserDto  $userDto): Builder |User;
 
     public function  editUser(User $user): Builder |User;
-    public function  getUserById(int $userId): Builder|User;
+    public function  getUserById(int $userId): Builder|User|null;
 }
