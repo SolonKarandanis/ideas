@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::withCount(['ideas','comments'])->findOrFail($id);
         return view('users.show',compact('user'));
     }
 

@@ -77,4 +77,8 @@ class User extends Authenticatable
     public function ideas(): HasMany{
         return $this->hasMany(Idea::class);
     }
+
+    public function comments(): HasMany{
+        return $this->hasMany(Comment::class);
+    }
 }

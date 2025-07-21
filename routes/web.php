@@ -18,11 +18,11 @@ Route::group(['prefix' => 'ideas','as'=>'ideas.'], function () {
     Route::put('/{id}', [IdeaController::class, 'update'])->name('update');
 
     Route::post('/ideas/{id}/comments', [CommentController::class, 'store'])->name('comments.create');
-
-    Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
 })
     ->middleware(['auth']);
 
+Route::resource('users', UserController::class)->only(['show', 'edit', 'update'])
+    ->middleware(['auth']);
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
