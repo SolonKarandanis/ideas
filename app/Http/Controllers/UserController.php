@@ -4,20 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Dtos\UserDto;
 use App\Http\Requests\Users\UpdateUserRequest;
-use App\Models\User;
 use App\Services\UserServiceInterface;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function __construct(private readonly UserServiceInterface $userService){}
-
     /**
      * Display the specified resource.
      */
     public function show(int $id)
     {
         $user = $this->userService->getUserById($id);
-        return view('users.show',compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -26,8 +25,8 @@ class UserController extends Controller
     public function edit(int $id)
     {
         $user = $this->userService->getUserById($id);
-        $editing=true;
-        return view('users.show',compact('user','editing'));
+        $editing = true;
+        return view('users.show', compact('user', 'editing'));
     }
 
     /**
@@ -43,7 +42,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function profile(Request $request)
     {
         //
     }

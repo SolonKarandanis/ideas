@@ -24,6 +24,9 @@ Route::group(['prefix' => 'ideas','as'=>'ideas.'], function () {
 Route::resource('users', UserController::class)->only(['show', 'edit', 'update'])
     ->middleware(['auth']);
 
+Route::get('profile', [UserController::class, 'profile'])->name('profile')
+    ->middleware(['auth']);
+
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
