@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Repositories\CommentRepositoryInterface;
 use App\Repositories\IdeaRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
+use App\Services\CommentService;
+use App\Services\CommentServiceInterface;
 use App\Services\IdeaService;
 use App\Services\IdeaServiceInterface;
 use App\Services\UserService;
@@ -19,6 +22,9 @@ class ServiceServiceProvider extends ServiceProvider
         });
         $this->app->bind(IdeaServiceInterface::class, function ($app){
             return new IdeaService($app->make(IdeaRepositoryInterface::class));
+        });
+        $this->app->bind(CommentServiceInterface::class, function ($app){
+            return new CommentService($app->make(CommentRepositoryInterface::class));
         });
     }
 
