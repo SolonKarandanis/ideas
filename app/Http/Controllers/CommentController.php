@@ -17,6 +17,8 @@ class CommentController extends Controller
             abort(404);
         }
         $comment = CreateCommentDto::fromFormRequest($request);
+        $comment->setUserId(auth()->id());
+        $comment->setIdeaId($idea->id);
         Comment::create([
             'idea_id' => $idea->id,
             'content' => $request->get('content'),
