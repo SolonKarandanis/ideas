@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\CommentRepository;
+use App\Repositories\CommentRepositoryInterface;
 use App\Repositories\IdeaRepository;
 use App\Repositories\IdeaRepositoryInterface;
 use App\Repositories\UserRepository;
@@ -14,7 +16,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class,UserRepository::class);
         $this->app->bind(IdeaRepositoryInterface::class,IdeaRepository::class);
-//        $this->app->bind(TransactionRepositoryInterface::class,TransactionRepository::class);
+        $this->app->bind(CommentRepositoryInterface::class,CommentRepository::class);
 //        $this->app->bind(PostRepositoryInterface::class,PostRepository::class);
 //        $this->app->bind(AccountRepositoryInterface::class,AccountRepository::class);
     }
