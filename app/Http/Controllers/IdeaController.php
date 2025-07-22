@@ -15,6 +15,7 @@ class IdeaController extends Controller
     public function store(CreateIdeaRequest $request)
     {
         $ideaDto = IdeaDto::fromFormRequest($request);
+        $ideaDto->setUserId(auth()->id());
         $this->ideaService->createIdea($ideaDto);
         return redirect()->route('dashboard')
             ->with('success', 'Idea added successfully!');
