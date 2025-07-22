@@ -6,7 +6,7 @@
                      src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar">
                 <div>
                     <h5 class="card-title mb-0">
-                        <a href="#">
+                        <a href="{{route('users.show',$idea->user_id)}}">
                             {{$idea->user_name}}
                         </a>
                     </h5>

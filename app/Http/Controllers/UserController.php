@@ -42,8 +42,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function profile(Request $request)
+    public function profile()
     {
-        //
+        $user = $this->userService->getUserById(auth()->id());
+        return view('users.show', compact('user'));
     }
 }
