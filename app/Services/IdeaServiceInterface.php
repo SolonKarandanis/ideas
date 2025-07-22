@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 interface IdeaServiceInterface
 {
 
-    public function findById(int $id): ?Idea;
+    public function findById(int $id,bool $withRelations): ?Idea;
 
     public function searchIdeas(string|null $searchQuery): LengthAwarePaginator;
     public function createIdea(IdeaDto $ideaDto):Builder|Idea;

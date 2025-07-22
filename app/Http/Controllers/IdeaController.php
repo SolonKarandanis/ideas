@@ -21,7 +21,7 @@ class IdeaController extends Controller
     }
 
     public function show(int $id){
-        $idea= $this->ideaService->findById($id);
+        $idea= $this->ideaService->findById($id,true);
         return view('ideas.show',[
             'idea'=>$idea,
             'editing'=>false
@@ -29,7 +29,7 @@ class IdeaController extends Controller
     }
 
     public function edit(int $id){
-        $idea= $this->ideaService->findById($id);
+        $idea= $this->ideaService->findById($id,true);
         return view('ideas.show',[
             'idea'=>$idea,
             'editing'=>true

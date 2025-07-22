@@ -13,6 +13,8 @@ interface IdeaRepositoryInterface
 
     public function findById(int $id): ?Idea;
 
+    public function findByIdWithRelations(int $id): ?Idea;
+
     public function searchIdeas(string|null $searchQuery): LengthAwarePaginator;
 
     public function createIdea(IdeaDto $ideaDto):Builder|Idea;

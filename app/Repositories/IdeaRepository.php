@@ -17,6 +17,11 @@ class IdeaRepository implements IdeaRepositoryInterface
 
     public function findById(int $id): ?Idea
     {
+        return $this->modelQuery()->whereId($id)->first();
+    }
+
+    public function findByIdWithRelations(int $id): ?Idea
+    {
         return $this->modelQuery()
             ->select([
                 'ideas.*',
