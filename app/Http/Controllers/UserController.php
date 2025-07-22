@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Dtos\UserDto;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Services\UserServiceInterface;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
