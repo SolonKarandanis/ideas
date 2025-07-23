@@ -28,7 +28,7 @@ class UserService implements UserServiceInterface
         $user->bio = $userDto->getBio();
         if(!is_null($imageFile)){
             if(!is_null($user->image)){
-                Storage::delete($user->image);
+                Storage::disk('public')->delete($user->image);
             }
             $imagePath = $imageFile->store('images', 'public');
             $user->image=$imagePath;
