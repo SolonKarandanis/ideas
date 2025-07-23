@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\CreateUserDto;
 use App\Dtos\UpdateUserDto;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Services\UserServiceInterface;
@@ -36,11 +35,8 @@ class UserController extends Controller
     {
         $userDto = UpdateUserDto::fromFormRequest($request);
         $userDto->setId($id);
-        if($request->has('image')){
-            $imagePath = $request->file('image')->store('images', 'public');
-            $userDto->setImage($imagePath);
-        }
-        $user=$this->userService->editUser($userDto);
+        $image =$request->has('image')?$request->file('image'):null;
+        $user=$this->userService->editUser($userDto, $image);
         return view('users.show', compact('user'))
             ->with('success', 'User updated successfully!');
     }

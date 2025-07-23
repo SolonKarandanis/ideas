@@ -3,6 +3,7 @@
 namespace App\Dtos;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\UploadedFile;
 
 class UpdateUserDto
 {
@@ -12,6 +13,7 @@ class UpdateUserDto
     private string|null $bio =null;
 
     private string|null $image=null;
+
 
     public static function fromFormRequest(FormRequest $request):UpdateUserDto{
         $userDto = new UpdateUserDto();

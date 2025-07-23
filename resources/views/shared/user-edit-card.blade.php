@@ -9,16 +9,15 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                     <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                         src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar">
+                         src="{{$user->getImageUrl()}}" alt="Mario Avatar">
                     <div>
-
                         <input name="name" value="{{$user->name}}" type="text" class="form-control">
                         @error('name')
-                        <span class="d-block fs-6 text-danger mt-2">{{$message}}</span>
+                            <span class="d-block fs-6 text-danger mt-2">{{$message}}</span>
                         @enderror
-                        <input name="email" value="{{$user->email}}" type="email" class="form-control">
+                            <input name="email" value="{{$user->email}}" type="email" class="form-control">
                         @error('email')
-                        <span class="d-block fs-6 text-danger mt-2">{{$message}}</span>
+                            <span class="d-block fs-6 text-danger mt-2">{{$message}}</span>
                         @enderror
                     </div>
                 </div>
