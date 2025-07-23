@@ -24,6 +24,9 @@ class UserService implements UserServiceInterface
         $user->name = $userDto->getName();
         $user->email = $userDto->getEmail();
         $user->bio = $userDto->getBio();
+        if(!is_null($userDto->getImage())){
+            $user->image = $userDto->getImage();
+        }
         return $this->userRepository->editUser($user);
     }
 

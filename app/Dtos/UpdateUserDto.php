@@ -9,7 +9,9 @@ class UpdateUserDto
     private ?int $id;
     private string $email;
     private string $name;
-    private string $bio;
+    private string|null $bio =null;
+
+    private string|null $image=null;
 
     public static function fromFormRequest(FormRequest $request):UpdateUserDto{
         $userDto = new UpdateUserDto();
@@ -49,7 +51,7 @@ class UpdateUserDto
         $this->name = $name;
     }
 
-    public function getBio(): string
+    public function getBio(): string|null
     {
         return $this->bio;
     }
@@ -57,5 +59,15 @@ class UpdateUserDto
     public function setBio(string $bio): void
     {
         $this->bio = $bio;
+    }
+
+    public function getImage(): string|null
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
     }
 }

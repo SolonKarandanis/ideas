@@ -36,7 +36,13 @@ class UserController extends Controller
     {
         $userDto = UpdateUserDto::fromFormRequest($request);
         $userDto->setId($id);
-        $this->userService->editUser($userDto);
+        if($request->has('image')){
+            $imagePath = $request->file('image')->store('images', 'public');
+            $userDto->setImage($imagePath);
+        }
+        $user=$this->userService->editUser($userDto);
+        return view('users.show', compact('user'))
+            ->with('success', 'User updated successfully!');
     }
 
     /**

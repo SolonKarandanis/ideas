@@ -13,7 +13,8 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($userId)],
-            'bio' => ['required', 'string'],
+            'bio' => ['nullable', 'string','min:1','max:255'],
+            'image'=>['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
         ];
     }
 
