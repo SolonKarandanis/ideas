@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\UserDto;
+use App\Dtos\CreateUserDto;
 use App\Http\Requests\Auth\CreateUserRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Services\UserServiceInterface;
@@ -16,7 +16,7 @@ class AuthController extends Controller
     }
 
     public function store(CreateUserRequest $request){
-        $userDto = UserDto::fromFormRequest($request);
+        $userDto = CreateUserDto::fromFormRequest($request);
         $this->userService->createUser($userDto);
         return redirect()->route('dashboard')
             ->with('success', 'User registered successfully!');

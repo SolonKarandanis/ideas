@@ -21,8 +21,11 @@ Route::group(['prefix' => 'ideas','as'=>'ideas.'], function () {
 })
     ->middleware(['auth']);
 
-Route::resource('users', UserController::class)->only(['show', 'edit', 'update'])
-    ->middleware(['auth']);
+Route::group(['prefix' => 'users','as'=>'users.'], function () {
+    Route::get('/{id}', [UserController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [UserController::class, 'update'])->name('update');
+})->middleware(['auth']);
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')
     ->middleware(['auth']);

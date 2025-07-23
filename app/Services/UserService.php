@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Dtos\UserDto;
+use App\Dtos\CreateUserDto;
 use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,12 +12,12 @@ class UserService implements UserServiceInterface
 {
 
     public function __construct(private readonly UserRepositoryInterface $userRepository){}
-    public function createUser(UserDto $userDto): Builder|User
+    public function createUser(CreateUserDto $userDto): Builder|User
     {
         return $this->userRepository->createUser($userDto);
     }
 
-    public function editUser(UserDto $userDto): Builder|User
+    public function editUser(CreateUserDto $userDto): Builder|User
     {
         $user = $this->getUserById($userDto->getId());
         $user->name = $userDto->getName();

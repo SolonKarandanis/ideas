@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\UserDto;
+use App\Dtos\CreateUserDto;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Services\UserServiceInterface;
 
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, int $id)
     {
-        $userDto = UserDto::fromFormRequest($request);
+        $userDto = CreateUserDto::fromFormRequest($request);
         $userDto->setId($id);
         $this->userService->editUser($userDto);
     }

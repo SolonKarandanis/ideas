@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserDto
+class CreateUserDto
 {
     private ?int $id;
     private string $email;
@@ -17,8 +17,8 @@ class UserDto
     private ?Carbon $created_at;
     private ?Carbon $updated_at;
 
-    public static function fromFormRequest(FormRequest $request):UserDto{
-        $userDto = new UserDto();
+    public static function fromFormRequest(FormRequest $request):CreateUserDto{
+        $userDto = new CreateUserDto();
         $userDto->setName($request->input('name'));
         $userDto->setEmail($request->input('email'));
         $userDto->setPassword($request->input('password'));
@@ -26,8 +26,8 @@ class UserDto
         return $userDto;
     }
 
-    public static function fromModel(User|Model $model): UserDto{
-        $userDto = new UserDto();
+    public static function fromModel(User|Model $model): CreateUserDto{
+        $userDto = new CreateUserDto();
         $userDto->setId($model->id);
         $userDto->setName($model->name);
         $userDto->setEmail($model->email);

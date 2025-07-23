@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Dtos\UserDto;
+use App\Dtos\CreateUserDto;
 use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +16,7 @@ class UserRepository implements UserRepositoryInterface
         return User::query();
     }
 
-    public function createUser(UserDto $userDto): Builder|User
+    public function createUser(CreateUserDto $userDto): Builder|User
     {
         return $this->modelQuery()->create([
             'name' => $userDto->getName(),
