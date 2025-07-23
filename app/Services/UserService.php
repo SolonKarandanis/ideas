@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Dtos\CreateUserDto;
+use App\Dtos\UpdateUserDto;
 use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +18,7 @@ class UserService implements UserServiceInterface
         return $this->userRepository->createUser($userDto);
     }
 
-    public function editUser(CreateUserDto $userDto): Builder|User
+    public function editUser(UpdateUserDto $userDto): Builder|User
     {
         $user = $this->getUserById($userDto->getId());
         $user->name = $userDto->getName();
