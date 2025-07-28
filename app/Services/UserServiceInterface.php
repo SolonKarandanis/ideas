@@ -13,4 +13,8 @@ interface UserServiceInterface
     public function  createUser(CreateUserDto $userDto): Builder |User;
     public function  editUser(UpdateUserDto $userDto, UploadedFile|null $imageFile): Builder |User;
     public function  getUserById(int $userId): Builder|User;
+
+    public function followUser(int $userId, User $follower): void;
+
+    public function unfollowUser(int $userId, User $follower): void;
 }

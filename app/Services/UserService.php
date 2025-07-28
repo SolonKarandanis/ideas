@@ -44,4 +44,16 @@ class UserService implements UserServiceInterface
         }
         return $user;
     }
+
+    public function followUser(int $userId, User $follower): void
+    {
+        $user = $this->getUserById($userId);
+        $follower->followings()->attach($user);
+    }
+
+    public function unfollowUser(int $userId, User $follower): void
+    {
+        $user = $this->getUserById($userId);
+        $follower->followings()->detach($user);
+    }
 }
