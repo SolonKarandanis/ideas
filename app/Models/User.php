@@ -103,6 +103,10 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function follows(User $user):bool{
+        return $this->followings()->where('user_id', $user->id)->exists();
+    }
+
     public function getImageUrl(): string{
         if($this->image){
             return url('storage/'.$this->image);
