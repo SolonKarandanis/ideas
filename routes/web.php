@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::group(['prefix' => 'users','as'=>'users.'], function () {
     Route::get('/{id}', [UserController::class, 'show'])->name('show');
     Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
     Route::put('/{id}', [UserController::class, 'update'])->name('update');
+    Route::put('/{id}/follow', [FollowerController::class, 'follow'])->name('follow');
+    Route::put('/{id}/unfollow', [FollowerController::class, 'unfollow'])->name('unfollow');
 })->middleware(['auth']);
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')

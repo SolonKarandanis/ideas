@@ -13,7 +13,7 @@ class CreateUserDto
     private string $email;
     private string $name;
     private string $password;
-    private string $bio;
+    private string|null $bio;
     private ?Carbon $created_at;
     private ?Carbon $updated_at;
 
@@ -105,7 +105,7 @@ class CreateUserDto
         $this->password = $password;
     }
 
-    public function setBio(string $bio): void
+    public function setBio(string|null $bio): void
     {
         $this->bio = $bio;
     }

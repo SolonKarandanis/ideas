@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Dtos\CreateCommentDto;
 use App\Http\Requests\Comments\CreateCommentRequest;
-use App\Models\Comment;
-use App\Models\Idea;
 use App\Services\CommentServiceInterface;
 use App\Services\IdeaServiceInterface;
 
