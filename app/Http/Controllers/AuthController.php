@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Dtos\CreateUserDto;
 use App\Http\Requests\Auth\CreateUserRequest;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Mail\WelcomeEmail;
 use App\Services\UserServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -17,7 +19,8 @@ class AuthController extends Controller
 
     public function store(CreateUserRequest $request){
         $userDto = CreateUserDto::fromFormRequest($request);
-        $this->userService->createUser($userDto);
+        $user=$this->userService->createUser($userDto);
+        Mail::to($user->email)->send(new WelcomeEmail($user));
         return redirect()->route('dashboard')
             ->with('success', 'User registered successfully!');
     }
