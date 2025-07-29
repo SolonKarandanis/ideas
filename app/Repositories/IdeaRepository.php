@@ -40,7 +40,6 @@ class IdeaRepository implements IdeaRepositoryInterface
             ->select([
                 'ideas.*',
             ])
-            ->join('users', 'users.id', '=', 'ideas.user_id')
             ->with(['user','comments','comments.user'])
             ->orderBy('created_at', 'desc');
         $searchQuery= is_null($searchQuery) ?  $searchQuery : null;
