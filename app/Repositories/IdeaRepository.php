@@ -39,11 +39,9 @@ class IdeaRepository implements IdeaRepositoryInterface
         $query = $this->modelQuery()
             ->select([
                 'ideas.*',
-                'users.id as user_id',
-                'users.name as user_name'
             ])
             ->join('users', 'users.id', '=', 'ideas.user_id')
-            ->with(['comments','comments.user'])
+            ->with(['user','comments','comments.user'])
             ->orderBy('created_at', 'desc');
         $searchQuery= is_null($searchQuery) ?  $searchQuery : null;
         return $query->when($searchQuery != null, function ($query) use ($searchQuery) {

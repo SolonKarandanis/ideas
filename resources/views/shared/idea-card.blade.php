@@ -6,8 +6,8 @@
                      src="{{$idea->user->getImageUrl()}}" alt="Mario Avatar">
                 <div>
                     <h5 class="card-title mb-0">
-                        <a href="{{route('users.show',$idea->user_id)}}">
-                            {{$idea->user_name}}
+                        <a href="{{route('users.show',$idea->user->id)}}">
+                            {{$idea->user->name}}
                         </a>
                     </h5>
                 </div>
