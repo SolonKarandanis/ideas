@@ -13,6 +13,7 @@ class DashboardController extends Controller
     {
         $searchQuery=$request->has('search') ?  $request->get('search') : null;
         $ideas = $this->ideaService->searchIdeas($searchQuery);
+//        dd($ideas);
         return view('dashboard', ['ideas' => $ideas]);
     }
 }

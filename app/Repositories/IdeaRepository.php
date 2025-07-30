@@ -40,6 +40,9 @@ class IdeaRepository implements IdeaRepositoryInterface
             ->select([
                 'ideas.*',
             ])
+//            ->addSelect([
+//                'likes_count'=>
+//            ])
             ->with(['user','comments','comments.user'])
             ->orderBy('created_at', 'desc');
         $searchQuery= is_null($searchQuery) ?  $searchQuery : null;
