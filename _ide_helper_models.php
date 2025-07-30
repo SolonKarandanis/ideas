@@ -28,6 +28,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereIdeaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereUpdatedAt($value)
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Comment whereUserId($value)
+ * @property-read \App\Models\Idea $idea
+ * @property-read \App\Models\User $user
+ * @mixin \Eloquent
  */
 	class Comment extends \Eloquent {}
 }
@@ -38,7 +43,6 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $content
- * @property int $likes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea newModelQuery()
@@ -49,6 +53,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereLikes($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereUpdatedAt($value)
+ * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Idea whereUserId($value)
+ * @property-read \App\Models\User $user
  * @mixin \Eloquent
  */
 	class Idea extends \Eloquent {}
@@ -80,6 +89,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
+ * @property string|null $bio
+ * @property string|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Idea> $ideas
+ * @property-read int|null $ideas_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereBio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereImage($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followers
+ * @property-read int|null $followers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followings
+ * @property-read int|null $followings_count
  * @mixin \Eloquent
  */
 	class User extends \Eloquent {}

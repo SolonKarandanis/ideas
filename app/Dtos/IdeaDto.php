@@ -13,7 +13,6 @@ class IdeaDto
 
     private ?int $userId;
     private string $content;
-    private ?int $likes;
     private ?Carbon $created_at;
     private ?Carbon $updated_at;
 
@@ -21,7 +20,6 @@ class IdeaDto
     {
         $ideaDto = new IdeaDto();
         $ideaDto->setContent($request->get('content'));
-        $ideaDto->setLikes($request->get('likes'));
         $ideaDto->setCreatedAt($request->get('created_at'));
         $ideaDto->setUpdatedAt($request->get('updated_at'));
         return $ideaDto;
@@ -33,7 +31,6 @@ class IdeaDto
         $ideaDto->setId($model->id);
         $ideaDto->setUserId($model->user_id);
         $ideaDto->setContent($model->content);
-        $ideaDto->setLikes($model->likes);
         $ideaDto->setCreatedAt($model->created_at);
         $ideaDto->setUpdatedAt($model->updated_at);
         return $ideaDto;
@@ -44,7 +41,6 @@ class IdeaDto
         return [
             'id' => $model->id,
             'content' => $model->content,
-            'likes' => $model->likes,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];
@@ -70,15 +66,6 @@ class IdeaDto
         $this->content = $content;
     }
 
-    public function getLikes(): ?int
-    {
-        return $this->likes;
-    }
-
-    public function setLikes(?int $likes): void
-    {
-        $this->likes = $likes;
-    }
 
     public function getCreatedAt(): ?Carbon
     {

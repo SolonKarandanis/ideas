@@ -42,6 +42,10 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $ideas_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereImage($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followers
+ * @property-read int|null $followers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followings
+ * @property-read int|null $followings_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -105,6 +109,10 @@ class User extends Authenticatable
 
     public function follows(User $user):bool{
         return $this->followings()->where('user_id', $user->id)->exists();
+    }
+
+    public function likes():BelongsToMany{
+        return $this->belongsToMany(Idea::class,'idea_like')->withTimestamps();
     }
 
     public function getImageUrl(): string{
