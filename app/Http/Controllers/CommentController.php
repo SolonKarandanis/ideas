@@ -15,9 +15,6 @@ class CommentController extends Controller
     ){}
     public function store(CreateCommentRequest $request,int $id){
         $idea=$this->ideaService->findById($id,false);
-        if(is_null($idea)){
-            abort(404);
-        }
         $comment = CreateCommentDto::fromFormRequest($request);
         $comment->setUserId(auth()->id());
         $comment->setIdeaId($idea->id);

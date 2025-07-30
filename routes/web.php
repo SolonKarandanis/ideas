@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,9 @@ Route::group(['prefix' => 'ideas','as'=>'ideas.'], function () {
     Route::get('/{id}/edit', [IdeaController::class, 'edit'])->name('edit');
     Route::put('/{id}', [IdeaController::class, 'update'])->name('update');
 
-    Route::post('/ideas/{id}/comments', [CommentController::class, 'store'])->name('comments.create');
+    Route::post('/{id}/comments', [CommentController::class, 'store'])->name('comments.create');
+    Route::put('/{id}/like', [LikeController::class, 'like'])->name('like');
+    Route::put('/{id}/unlike', [LikeController::class, 'unlike'])->name('unlike');
 })
     ->middleware(['auth']);
 
