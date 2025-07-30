@@ -107,12 +107,16 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
-    public function follows(User $user):bool{
+    public function isFollowing(User $user):bool{
         return $this->followings()->where('user_id', $user->id)->exists();
     }
 
     public function likes():BelongsToMany{
         return $this->belongsToMany(Idea::class,'idea_like')->withTimestamps();
+    }
+
+    public function hasLikedIdea(Idea $idea):bool{
+        return $this->likes()->where('idea_id', $idea->id)->exists();
     }
 
     public function getImageUrl(): string{

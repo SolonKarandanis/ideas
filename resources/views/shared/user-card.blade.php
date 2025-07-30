@@ -41,17 +41,17 @@
             @auth
                 @if(Auth::id() !== $user->id)
                     <div class="mt-3">
-                        @if(Auth::user()->follows($user))
+                        @if(Auth::user()->isFollowing($user))
                             <form method="post" action="{{route('users.unfollow',$user->id)}}">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="btn btn-primary btn-sm"> Unfollow </button>
+                                <button type="submit" class="btn btn-primary btn-sm"> Unfollow</button>
                             </form>
                         @else
                             <form method="post" action="{{route('users.follow',$user->id)}}">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="btn btn-primary btn-sm"> Follow </button>
+                                <button type="submit" class="btn btn-primary btn-sm"> Follow</button>
                             </form>
                         @endif
                     </div>
