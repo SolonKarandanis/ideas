@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\LikeController;
@@ -32,6 +33,8 @@ Route::group(['prefix' => 'users','as'=>'users.'], function () {
     Route::put('/{id}/follow', [FollowerController::class, 'follow'])->name('follow');
     Route::put('/{id}/unfollow', [FollowerController::class, 'unfollow'])->name('unfollow');
 })->middleware(['auth']);
+
+Route::get('/feed', FeedController::class)->middleware('auth')->name('feed');
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile')
     ->middleware(['auth']);
