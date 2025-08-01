@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
@@ -46,6 +46,10 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $followers_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followings
  * @property-read int|null $followings_count
+ * @property int $is_admin
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Idea> $likes
+ * @property-read int|null $likes_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereIsAdmin($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable
