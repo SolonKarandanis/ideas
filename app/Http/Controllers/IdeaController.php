@@ -45,6 +45,8 @@ class IdeaController extends Controller
     }
 
     public function destroy(int $id){
+        $idea= $this->ideaService->findById($id,false);
+        $this->authorize('idea.delete',$idea);
         $this->ideaService->deleteIdea($id);
         return redirect()->route('dashboard')
             ->with('success', 'Idea deleted successfully!');
