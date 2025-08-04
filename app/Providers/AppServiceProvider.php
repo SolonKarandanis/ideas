@@ -23,16 +23,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('isAdmin', function (User $user):bool {
-            return $user->is_admin;
-        });
-
-        Gate::define('idea.delete', function (User $user,Idea $idea):bool {
-            return ($user->is_admin) || $user->id === $idea->user_id;
-        });
-        Gate::define('idea.edit', function (User $user,Idea $idea):bool {
-            return ($user->is_admin) || $user->id === $idea->user_id;
-        });
+//        Gate::define('isAdmin', function (User $user):bool {
+//            return $user->is_admin;
+//        });
+//
+//        Gate::define('idea.delete', function (User $user,Idea $idea):bool {
+//            return ($user->is_admin) || $user->id === $idea->user_id;
+//        });
+//        Gate::define('idea.edit', function (User $user,Idea $idea):bool {
+//            return ($user->is_admin) || $user->id === $idea->user_id;
+//        });
         Paginator::useBootstrapFive();
     }
 }
