@@ -44,6 +44,7 @@ class IdeaRepository implements IdeaRepositoryInterface
 //                'likes_count'=>
 //            ])
             ->with(['user','comments','comments.user'])
+            ->withCount('likes')
             ->orderBy('created_at', 'desc');
         $searchQuery= is_null($searchQuery) ?  $searchQuery : null;
         return $query->when($searchQuery != null, function ($query) use ($searchQuery) {

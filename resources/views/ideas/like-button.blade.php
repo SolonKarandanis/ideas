@@ -6,7 +6,7 @@
                 @csrf
                 @method('PUT')
                 <button class="fw-light nav-link fs-6">
-                    <span class="fas fa-heart me-1"></span> {{$idea->likes->count()}}
+                    <span class="fas fa-heart me-1"></span> {{$idea->likes_count}}
                 </button>
             </form>
         @else
@@ -14,7 +14,7 @@
                 @csrf
                 @method('PUT')
                 <button class="fw-light nav-link fs-6">
-                    <span class="far fa-heart me-1"></span> {{$idea->likes->count()}}
+                    <span class="far fa-heart me-1"></span> {{$idea->likes_count}}
                 </button>
             </form>
         @endif
