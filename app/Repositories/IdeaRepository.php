@@ -40,9 +40,6 @@ class IdeaRepository implements IdeaRepositoryInterface
             ->select([
                 'ideas.*',
             ])
-//            ->addSelect([
-//                'likes_count'=>
-//            ])
             ->with(['user','comments','comments.user'])
             ->withCount('likes')
             ->orderBy('created_at', 'desc');
