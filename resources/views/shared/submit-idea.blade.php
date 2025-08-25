@@ -16,5 +16,5 @@
     </div>
 @endauth
 @guest
-    <h4>Login to Share yours ideas </h4>
+    <h4>{{trans('ideas.login.to.share')}}</h4>
 @endguest
